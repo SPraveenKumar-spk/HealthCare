@@ -79,7 +79,7 @@ export default function Testimonials() {
         <h2 className="text-4xl font-bold text-[#0A3D62] mb-6">
           Patient Testimonials & Success Stories
         </h2>
-        <p className="text-gray-700 text-lg mb-10">
+        <p className="text-gray-700 text-center text-lg mb-10 px-5">
           Hear from our patients about their journey to better health.
         </p>
 

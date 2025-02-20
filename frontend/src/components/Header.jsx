@@ -15,7 +15,7 @@ const Header = () => {
       <header className="bg-white py-4  fixed top-0 left-0 right-0 z-50">
         <nav className="mx-auto flex justify-between items-center w-[90%]">
           <div className="flex">
-            <img src={Logo} className="w-15 cursor-pointer" />
+            <img src={Logo} className="w-12 h-11 cursor-pointer" />
             <a
               className="text-3xl text-[#007C5A] font-semibold cursor-pointer"
               href="#"
@@ -46,16 +46,25 @@ const Header = () => {
             </li>
           </ul>
 
-          <button className="hidden md:block px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-700 cursor-pointer">
+          <a
+            className="hidden md:block px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-700"
+            href="/login"
+          >
             Login
-          </button>
+          </a>
 
           {toggle ? (
-            <button className="md:hidden text-3xl" onClick={handleToggle}>
+            <button
+              className="md:hidden text-3xl cursor-pointer"
+              onClick={handleToggle}
+            >
               <RxCross2 />
             </button>
           ) : (
-            <button className="md:hidden text-3xl" onClick={handleToggle}>
+            <button
+              className="md:hidden text-3xl cursor-pointer"
+              onClick={handleToggle}
+            >
               <RxHamburgerMenu />
             </button>
           )}
@@ -63,7 +72,7 @@ const Header = () => {
       </header>
 
       <div
-        className={`fixed top-[4rem] right-0 w-40 h-full bg-white shadow-lg transform ${
+        className={`fixed top-[4rem] right-0 w-40 h-full z-[100] bg-white shadow-lg transform ${
           toggle ? "translate-x-0" : "translate-x-full"
         } transition-transform duration-300 ease-in-out md:hidden`}
       >
