@@ -4,7 +4,6 @@ The HealthCare Management System is a web application designed to streamline pat
 
 ![image](https://github.com/user-attachments/assets/57fee4a1-8f38-4178-b6ff-f45da0427209)
 
-
 # Checkout the application
 https://healthsafe.vercel.app/
 # Tech Stack
@@ -15,8 +14,6 @@ Frontend:
 Backend:
 Java Spring Boot – REST API development and business logic.
 MySQL – Database to store patient, doctor, and appointment records.
-
-
 
 # Features
  For Patients:
@@ -34,5 +31,19 @@ MySQL – Database to store patient, doctor, and appointment records.
  1. Manage doctors and patients.
  2. Monitor appointment statistics.
  3. Access system analytics.
+
+# Prerequisites
+- React.js
+- Express.js
+- Node.js 
+- Java 17+
+- Maven or Gradle
+- MySQL Database
+
+# Project Setup
+Clone the Repository
+```bash
+https://github.com/SPraveenKumar-spk/HealthCare.git
+cd HealthCare
 
 
