@@ -4,7 +4,6 @@ import { Navigation, Pagination, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
 import img1 from "../assets/Banner1.jpg";
 import img3 from "../assets/img3.jpg";
 import img4 from "../assets/img4.jpg";
@@ -60,7 +59,7 @@ function MainContent() {
         "w-[80%] md:w-[50%] top-[40%] left-[30%] text-gray-900  p-6 drop-shadow-lg",
       action: true,
       buttonData: "Know More",
-      href: "/aboutus",
+      href: "/about",
     },
     {
       img: img3,
@@ -72,7 +71,7 @@ function MainContent() {
         "md:w-[50%] w-[60%] text-[#2D2D2D]   md:top-[35%] md:left-[30%] left-[30%]  drop-shadow-lg",
       action: true,
       buttonData: "Book Health Check-up",
-      href: "/book-health-checkup",
+      href: "/health-checkup",
     },
 
     {
@@ -83,18 +82,7 @@ function MainContent() {
       style: "w-[50%] md:top-[45%] md:left-[72%] left-[70%]",
       action: true,
       buttonData: "Explore Now",
-      href: "/explore",
-    },
-    {
-      img: img7,
-      title: "Shielding Your Health, Protecting Your Future.",
-      description:
-        "Stay guarded against diseases with advanced protection, expert care, and preventive healthcare solutions.",
-
-      style: "w-[50%] md:top-[40%] md:left-[40%] top-[50%] left-[30%] ",
-      action: true,
-      buttonData: "Protect Your Health",
-      href: "/find-doctor",
+      href: "#explore",
     },
     {
       img: img8,
@@ -151,26 +139,24 @@ function MainContent() {
             </Swiper>
           </div>
         </section>
-
-        {/* bg-[#007C9D] */}
         <section>
           <div className="flex flex-col justify-center items-center bg-white w-full min-h-[40vh] text-gray-800">
             <h2 className="text-3xl text-center py-3 md:py-0 sm:py-6 ">
               How Can We Assist You Today?
             </h2>
             <div className="p-6  flex flex-nowrap ">
-              <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-13 w-auto cursor-pointer text-center ">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-13 w-auto cursor-pointer text-center ">
                 <div className="bg-white p-6 rounded-2xl shadow-md hover:bg-[#E3F2FD] hover:shadow-xl transition duration-300">
                   <TbCalendarUser
                     className="text-gray-600 mx-auto block"
                     size={40}
                   />
-                  <p className="text-gray-600 pt-3">Book Appointment</p>
-                </div>
-
-                <div className="bg-white  p-6 rounded-2xl shadow-md hover:bg-[#E3F2FD] hover:shadow-xl transition duration-300 ">
-                  <FaSearch className="text-gray-600 mx-auto block" size={40} />
-                  <p className="text-gray-600 pt-3">Find Doctor</p>
+                  <NavLink
+                    className="text-gray-600 pt-3"
+                    to="/book-appointment"
+                  >
+                    Book Appointment
+                  </NavLink>
                 </div>
 
                 <div className="bg-white  p-6 rounded-2xl shadow-md hover:bg-[#E3F2FD] hover:shadow-xl transition duration-300 ">
@@ -178,7 +164,9 @@ function MainContent() {
                     className="text-gray-600 mx-auto block"
                     size={40}
                   />
-                  <p className="text-gray-600 pt-3">Find Hospital</p>
+                  <NavLink className="text-gray-600 pt-3" to="/find-hospital">
+                    Find Hospital
+                  </NavLink>
                 </div>
 
                 <div className="bg-white  p-6 rounded-2xl shadow-md hover:bg-[#E3F2FD] hover:shadow-xl transition duration-300 ">
@@ -186,7 +174,9 @@ function MainContent() {
                     className="text-gray-600 mx-auto block"
                     size={40}
                   />
-                  <p className="text-gray-600 pt-3">Book Health Check-up</p>
+                  <NavLink className="text-gray-600 pt-3" to="/health-checkup">
+                    Book Health Check-up
+                  </NavLink>
                 </div>
 
                 <div className="bg-white  p-6 rounded-2xl shadow-md hover:bg-[#E3F2FD] hover:shadow-xl transition duration-300 ">
@@ -194,18 +184,20 @@ function MainContent() {
                     className="text-gray-600 mx-auto block"
                     size={40}
                   />
-                  <p className="text-gray-600 pt-3">Consult Online</p>
+                  <NavLink className="text-gray-600 pt-3" to="/consult-online">
+                    Consult Online
+                  </NavLink>
                 </div>
               </div>
             </div>
           </div>
         </section>
-        <section>
-          <div className="mt-2 w-full min-h-30vh">
+        <section id="#explore">
+          <div className="mt-2 w-full min-h-[30vh]">
             <h3 className="text-3xl text-center pt-5">
               Explore Our Specialized Care Departments
             </h3>
-            <p className="text-gray-700 pt-4 px-10 text-center ">
+            <p className="text-gray-700 pt-4 px-10 text-center">
               At HealthCare, we are committed to providing expert medical
               attention across a wide range of specialized care departments. Our
               team of highly skilled doctors, nurses, and medical professionals
@@ -213,85 +205,106 @@ function MainContent() {
               needs.
             </p>
             <div className="flex flex-wrap justify-center items-center">
-              <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4 gap-5  p-6 cursor-pointer">
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-5 p-6 cursor-pointer">
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <MdOutlineMonitorHeart
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Cardiology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaLungsVirus
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Pulmonology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <GiKidneys
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Nephrology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaHandsHoldingChild
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Pediatrics</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <PiHeadCircuitDuotone
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Neurology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 w-auto shadow-md ">
-                  <GiStomach
-                    size={40}
-                    className="mx-auto block text-orange-500"
-                  />
-
-                  <h4 className="text-1xl text-center  mt-2">
-                    Gastroenterology
-                  </h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaEye size={40} className="mx-auto block text-orange-500" />
                   <h4 className="text-1xl text-center mt-2">Ophthalmology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaBaby size={40} className="mx-auto block text-orange-500" />
                   <h4 className="text-1xl text-center mt-2">Neonatology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaXRay size={40} className="mx-auto block text-orange-500" />
                   <h4 className="text-1xl text-center mt-2">Radiology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <FaTooth
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
-                  <h4 className="text-1xl text-center mt-2">Radiology</h4>
-                </div>
-                <div className="bg-white rounded-2xl p-8 shadow-md">
+                  <h4 className="text-1xl text-center mt-2">Dentistry</h4>{" "}
+                  {/* Corrected "Radiology" to "Dentistry" */}
+                </NavLink>
+                <NavLink
+                  to="/book-appointment"
+                  className="bg-white rounded-2xl p-8 shadow-md hover:shadow-xl hover:bg-[#E3F2FD] transition duration-300"
+                >
                   <GiLegArmor
                     size={40}
                     className="mx-auto block text-orange-500"
                   />
                   <h4 className="text-1xl text-center mt-2">Orthopedic</h4>
-                </div>
+                </NavLink>
               </div>
               <div>
                 <img
                   src={SpecialCare}
                   alt="special care"
                   className="w-full max-w-[600px] px-0 rounded-lg"
-                ></img>
+                />
               </div>
             </div>
           </div>

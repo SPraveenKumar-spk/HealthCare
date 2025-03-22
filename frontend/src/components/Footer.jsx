@@ -46,16 +46,6 @@ function Footer() {
                 About Us
               </a>
             </li>
-            <li>
-              <a href="/careers" className="hover:text-gray-400">
-                Careers
-              </a>
-            </li>
-            <li>
-              <a href="/faq" className="hover:text-gray-400">
-                FAQs
-              </a>
-            </li>
           </ul>
         </div>
 
