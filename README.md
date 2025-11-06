@@ -12,7 +12,7 @@ Frontend:
  Tailwind CSS – Utility-first CSS framework for responsive design.
 
 Backend:
-Java Spring Boot – REST API development and business logic.
+Node.js & Express – REST API development and server-side logic.
 MySQL – Database to store patient, doctor, and appointment records.
 
 # Features
@@ -35,9 +35,7 @@ MySQL – Database to store patient, doctor, and appointment records.
 # Prerequisites
 - React.js
 - Express.js
-- Node.js 
-- Java 17+
-- Maven or Gradle
+- Node.js
 - MySQL Database
 
 # Project Setup
