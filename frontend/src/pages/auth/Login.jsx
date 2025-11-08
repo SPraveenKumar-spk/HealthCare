@@ -1,7 +1,30 @@
 import Header from "../../components/Header";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import api from "../../api/axios";
+import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import {useState} from "react";
 
 function Login() {
+ const navigate = useNavigate();
+  const { login } = useAuth(); 
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+const handleLogin = async (e) => {
+  e.preventDefault();
+
+  try {
+    const role = await login(email, password); 
+      if (role === "patient") navigate("/dashboard/patient");
+      else if (role === "doctor") navigate("/dashboard/doctor");
+      else navigate("/");
+
+  } catch (err) {
+    alert(err.response?.data?.message || "Login failed");
+  }
+};
+
   return (
     <>
       <Header />
@@ -20,14 +43,15 @@ function Login() {
             Sign in to your account
           </h3>
 
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleLogin}>
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Your email
               </label>
               <input
                 type="email"
-                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="yourname@gmail.com"
                 className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 required
@@ -40,7 +64,8 @@ function Login() {
               </label>
               <input
                 type="password"
-                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder:text-2xl"
                 required

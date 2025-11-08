@@ -2,9 +2,11 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { RxHamburgerMenu, RxCross2 } from "react-icons/rx";
 import Logo from "../assets/brand-logo.png";
+import { useAuth } from "../context/AuthContext";
 
 const Header = () => {
   const [toggle, setToggle] = useState(false);
+  const { user, logout } = useAuth();
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -46,12 +48,22 @@ const Header = () => {
             </li>
           </ul>
 
-          <a
-            className="hidden md:block px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-700"
-            href="/login"
-          >
-            Login
-          </a>
+         {user ? (
+  <button
+    onClick={logout}
+    className="hidden md:block px-6 py-3 bg-red-500 text-white rounded hover:bg-red-700"
+  >
+    Logout
+  </button>
+) : (
+  <NavLink
+    to="/login"
+    className="hidden md:block px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-700"
+  >
+    Login
+  </NavLink>
+)}
+
 
           {toggle ? (
             <button
@@ -113,15 +125,30 @@ const Header = () => {
               Contact
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className="hover:text-gray-500"
-              to="/login"
-              onClick={handleToggle}
-            >
-              Login
-            </NavLink>
-          </li>
+          {user ? (
+  <li>
+    <button
+      onClick={() => {
+        logout();
+        handleToggle();
+      }}
+      className="text-red-600 hover:text-red-800"
+    >
+      Logout
+    </button>
+  </li>
+) : (
+  <li>
+    <NavLink
+      className="hover:text-gray-500"
+      to="/login"
+      onClick={handleToggle}
+    >
+      Login
+    </NavLink>
+  </li>
+)}
+
         </ul>
       </div>
     </>

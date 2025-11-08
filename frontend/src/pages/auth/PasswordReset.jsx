@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { useAuth } from "../../store/auth";
+import { useAuth } from "../../context/AuthContext";
 import Header from "../../Components/Header";
 
 const PasswordReset = () => {

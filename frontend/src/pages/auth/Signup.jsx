@@ -1,7 +1,34 @@
 import Header from "../../components/Header";
 import Breadcrumbs from "../../components/Breadcrumbs";
+import api from "../../api/axios";
+import { NavLink, useNavigate } from "react-router-dom";
+import {useState} from "react";
 
 function Signup() {
+   const navigate = useNavigate();
+const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [role, setRole] = useState("patient");
+
+  const handleRegister = async (e) => {
+  e.preventDefault();
+  const role = "patient";
+  try {
+    const res = await api.post("/auth/register", {
+      email,
+      password,
+      role,      
+      fullName  
+    });
+
+    alert("Registered Successfully! You can Login now.");
+    navigate("/login");
+
+  } catch (err) {
+    alert(err.response?.data?.message || "Registration failed");
+  }
+};
   return (
     <>
       <Header />
@@ -16,14 +43,15 @@ function Signup() {
             Create your account
           </h1>
 
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleRegister}>
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Your Name
               </label>
               <input
-                type="name"
-                name="name"
+                 type="text"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
                 placeholder="your name"
                 className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 required
@@ -35,7 +63,8 @@ function Signup() {
               </label>
               <input
                 type="email"
-                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="yourname@gmail.com"
                 className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
                 required
@@ -47,9 +76,10 @@ function Signup() {
                 Password
               </label>
               <input
-                type="password"
-                name="password"
-                placeholder="••••••••"
+               type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="•••••••"
                 className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder:text-2xl"
                 required
               />
@@ -58,14 +88,16 @@ function Signup() {
               <label htmlFor="role" className="block mb-2">
                 Your Role
               </label>
-              <select className="w-full p-2 border border-gray-300 rounded-lg">
-                <option value="patient" selected>
-                  Patient
-                </option>
-                <option>Doctor</option>
-                <option>Pharmacist</option>
-                <option>Receptionist</option>
-                <option>Admin</option>
+              <select
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded-lg"
+              >
+                <option value="patient">Patient</option>
+                <option value="doctor">Doctor</option>
+                <option value="pharmacist">Pharmacist</option>
+                <option value="receptionist">Receptionist</option>
+                <option value="admin">Admin</option>
               </select>
             </div>
 
