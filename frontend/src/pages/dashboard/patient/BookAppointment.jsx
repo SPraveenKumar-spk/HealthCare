@@ -6,208 +6,6 @@ import Footer from "../../../components/Footer";
 import { useState, useEffect } from "react";
 import api from "../../../api/axios";
 
-// const doctorData = [
-//   {
-//     id: 1,
-//     name: "Dr. Ayesha Khan",
-//     speciality: "Cardiologist",
-//     city: "Mumbai",
-//     language: "Hindi, English",
-//     gender: "Female",
-//     bio: "Expert in heart conditions with 15+ years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1594824476967-48c8b964273f?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: ["10:00 AM - 12:00 PM"],
-//       Monday: ["10:00 AM - 12:00 PM", "3:00 PM - 5:00 PM"],
-//       Tuesday: ["10:00 AM - 12:00 PM"],
-//       Wednesday: [],
-//       Thursday: ["10:00 AM - 12:00 PM"],
-//       Friday: ["3:00 PM - 5:00 PM"],
-//       Saturday: [],
-//     },
-//   },
-//   {
-//     id: 2,
-//     name: "Dr. Ravi Sharma",
-//     speciality: "Dermatologist",
-//     city: "Delhi",
-//     language: "English, Hindi",
-//     gender: "Male",
-//     bio: "Specializes in skin conditions with 12 years of expertise.",
-//     image:
-//       "https://images.unsplash.com/photo-1612349317154-3c9ba00a47cb?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: [],
-//       Monday: ["11:00 AM - 1:00 PM"],
-//       Tuesday: ["11:00 AM - 1:00 PM", "4:00 PM - 6:00 PM"],
-//       Wednesday: ["4:00 PM - 6:00 PM"],
-//       Thursday: [],
-//       Friday: ["11:00 AM - 1:00 PM"],
-//       Saturday: ["11:00 AM - 1:00 PM"],
-//     },
-//   },
-//   {
-//     id: 3,
-//     name: "Dr. Priya Menon",
-//     speciality: "Gynecologist",
-//     city: "Bangalore",
-//     language: "Kannada, English",
-//     gender: "Female",
-//     bio: "Renowned gynecologist with 10 years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: ["9:00 AM - 11:00 AM"],
-//       Monday: [],
-//       Tuesday: ["9:00 AM - 11:00 AM"],
-//       Wednesday: ["2:00 PM - 4:00 PM"],
-//       Thursday: ["9:00 AM - 11:00 AM"],
-//       Friday: [],
-//       Saturday: ["2:00 PM - 4:00 PM"],
-//     },
-//   },
-//   {
-//     id: 4,
-//     name: "Dr. Vikram Patel",
-//     speciality: "Neurologist",
-//     city: "Chennai",
-//     language: "Tamil, English",
-//     gender: "Male",
-//     bio: "Expert in neurological disorders with 18 years of practice.",
-//     image:
-//       "https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: [],
-//       Monday: ["10:00 AM - 12:00 PM"],
-//       Tuesday: ["2:00 PM - 4:00 PM"],
-//       Wednesday: ["10:00 AM - 12:00 PM"],
-//       Thursday: [],
-//       Friday: ["2:00 PM - 4:00 PM"],
-//       Saturday: ["10:00 AM - 12:00 PM"],
-//     },
-//   },
-//   {
-//     id: 5,
-//     name: "Dr. Neha Gupta",
-//     speciality: "Pediatrician",
-//     city: "Pune",
-//     language: "Marathi, English",
-//     gender: "Female",
-//     bio: "Caring pediatrician with 8 years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1598887142488-5b8b9e56d73b?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: ["11:00 AM - 1:00 PM"],
-//       Monday: ["9:00 AM - 11:00 AM"],
-//       Tuesday: [],
-//       Wednesday: ["11:00 AM - 1:00 PM"],
-//       Thursday: ["9:00 AM - 11:00 AM"],
-//       Friday: [],
-//       Saturday: ["11:00 AM - 1:00 PM"],
-//     },
-//   },
-//   {
-//     id: 6,
-//     name: "Dr. Sanjay Rao",
-//     speciality: "Orthopedist",
-//     city: "Hyderabad",
-//     language: "Telugu, English",
-//     gender: "Male",
-//     bio: "Specialist in bone and joint issues with 14 years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: [],
-//       Monday: ["3:00 PM - 5:00 PM"],
-//       Tuesday: ["10:00 AM - 12:00 PM"],
-//       Wednesday: [],
-//       Thursday: ["3:00 PM - 5:00 PM"],
-//       Friday: ["10:00 AM - 12:00 PM"],
-//       Saturday: [],
-//     },
-//   },
-//   {
-//     id: 7,
-//     name: "Dr. Meera Desai",
-//     speciality: "Ophthalmologist",
-//     city: "Ahmedabad",
-//     language: "Gujarati, English",
-//     gender: "Female",
-//     bio: "Eye care specialist with 11 years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1595877477518-42447fd153e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: ["10:00 AM - 12:00 PM"],
-//       Monday: [],
-//       Tuesday: ["2:00 PM - 4:00 PM"],
-//       Wednesday: ["10:00 AM - 12:00 PM"],
-//       Thursday: [],
-//       Friday: ["2:00 PM - 4:00 PM"],
-//       Saturday: ["10:00 AM - 12:00 PM"],
-//     },
-//   },
-//   {
-//     id: 8,
-//     name: "Dr. Arjun Singh",
-//     speciality: "Pulmonologist",
-//     city: "Kolkata",
-//     language: "Bengali, English",
-//     gender: "Male",
-//     bio: "Lung specialist with 13 years of expertise.",
-//     image:
-//       "https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: [],
-//       Monday: ["11:00 AM - 1:00 PM"],
-//       Tuesday: [],
-//       Wednesday: ["3:00 PM - 5:00 PM"],
-//       Thursday: ["11:00 AM - 1:00 PM"],
-//       Friday: [],
-//       Saturday: ["3:00 PM - 5:00 PM"],
-//     },
-//   },
-//   {
-//     id: 9,
-//     name: "Dr. Lakshmi Nair",
-//     speciality: "Endocrinologist",
-//     city: "Kochi",
-//     language: "Malayalam, English",
-//     gender: "Female",
-//     bio: "Hormone specialist with 9 years of experience.",
-//     image:
-//       "https://images.unsplash.com/photo-1582750433449-648ed127bb58?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: ["9:00 AM - 11:00 AM"],
-//       Monday: ["2:00 PM - 4:00 PM"],
-//       Tuesday: [],
-//       Wednesday: ["9:00 AM - 11:00 AM"],
-//       Thursday: ["2:00 PM - 4:00 PM"],
-//       Friday: [],
-//       Saturday: [],
-//     },
-//   },
-//   {
-//     id: 10,
-//     name: "Dr. Karan Malhotra",
-//     speciality: "Urologist",
-//     city: "Jaipur",
-//     language: "Hindi, English",
-//     gender: "Male",
-//     bio: "Expert in urinary tract issues with 16 years of practice.",
-//     image:
-//       "https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=200&h=200&q=80",
-//     schedule: {
-//       Sunday: [],
-//       Monday: ["10:00 AM - 12:00 PM"],
-//       Tuesday: ["3:00 PM - 5:00 PM"],
-//       Wednesday: [],
-//       Thursday: ["10:00 AM - 12:00 PM"],
-//       Friday: ["3:00 PM - 5:00 PM"],
-//       Saturday: [],
-//     },
-//   },
-// ];
 
 const daysOfWeek = [
   "Sunday",
@@ -269,6 +67,7 @@ useEffect(() => {
     setFilters({ city: "", speciality: "", language: "", gender: "" });
   };
 
+
   const filteredDoctors = doctorData.filter((doctor) => {
     const searchLower = searchTerm.toLowerCase();
     const doctorNameLower = doctor.fullName.toLowerCase();
@@ -304,6 +103,7 @@ const doctorSpecialityLower = doctor.specialization.toLowerCase();
       alert("Please select a time slot");
     }
   };
+  console.log("Selected Doctor:", selectedDoctor);
 
   const handleSearchChange = (e) => {
     setSearchTerm(e.target.value);
@@ -458,7 +258,7 @@ const doctorSpecialityLower = doctor.specialization.toLowerCase();
                     >
                       <div className="flex items-center space-x-5">
                         <img
-                          src={doctor.image}
+                          src={doctor.imageUrl}
                           alt={doctor.fullName}
                           className="w-16 h-16 rounded-full object-cover shadow-sm"
                         />

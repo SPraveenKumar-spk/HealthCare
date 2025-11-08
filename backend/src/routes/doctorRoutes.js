@@ -22,7 +22,7 @@ router.get("/", async (req, res) => {
 
       return {
         id: doc.id,
-        doctor: doc.fullName,
+        fullName: doc.fullName,
         specialization: doc.specialization,
         imageUrl: "https://cdn-icons-png.flaticon.com/512/387/387561.png",
         zoom: {
@@ -38,5 +38,21 @@ router.get("/", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+
+router.get("/:id", async (req, res) => {
+  try {
+    const doctor = await prisma.doctor.findUnique({
+      where: { id: Number(req.params.id) },
+      include: {
+        user: true,
+        schedules: true,
+      },
+    });
+    res.json(doctor);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 export default router;

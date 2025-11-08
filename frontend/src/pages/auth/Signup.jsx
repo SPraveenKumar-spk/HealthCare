@@ -6,29 +6,28 @@ import {useState} from "react";
 
 function Signup() {
    const navigate = useNavigate();
-const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("patient");
+const [formData, setFormData] = useState({
+  fullName: "",
+  email: "",
+  password: "",
+  role: "patient",
+});
 
-  const handleRegister = async (e) => {
+const handleChange = (e) => {
+  setFormData({ ...formData, [e.target.name]: e.target.value });
+};
+
+const handleRegister = async (e) => {
   e.preventDefault();
-  const role = "patient";
   try {
-    const res = await api.post("/auth/register", {
-      email,
-      password,
-      role,      
-      fullName  
-    });
-
-    alert("Registered Successfully! You can Login now.");
+    const res = await api.post("/auth/register", formData);
+    alert("Registered successfully!");
     navigate("/login");
-
   } catch (err) {
     alert(err.response?.data?.message || "Registration failed");
   }
 };
+
   return (
     <>
       <Header />
@@ -49,48 +48,48 @@ const [fullName, setFullName] = useState("");
                 Your Name
               </label>
               <input
-                 type="text"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-                placeholder="your name"
-                className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
+  type="text"
+  name="fullName"
+  placeholder="Your Name"
+  value={formData.fullName}
+  onChange={handleChange}
+  required
+/>
             </div>
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Your email
               </label>
               <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="yourname@gmail.com"
-                className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
-                required
-              />
+  type="email"
+  name="email"
+  placeholder="you@example.com"
+  value={formData.email}
+  onChange={handleChange}
+  required
+/>
             </div>
 
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Password
               </label>
-              <input
-               type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="•••••••"
-                className="w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 placeholder:text-2xl"
-                required
-              />
+             <input
+  type="password"
+  name="password"
+  placeholder="••••••••"
+  value={formData.password}
+  onChange={handleChange}
+  required
+/>
             </div>
             <div>
               <label htmlFor="role" className="block mb-2">
                 Your Role
               </label>
               <select
-                value={role}
-                onChange={(e) => setRole(e.target.value)}
+              name="role"
+                value={formData.role} onChange={handleChange}
                 className="w-full p-2 border border-gray-300 rounded-lg"
               >
                 <option value="patient">Patient</option>

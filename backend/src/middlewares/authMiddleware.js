@@ -18,3 +18,15 @@ export const protect = async (req, res, next) => {
     return res.status(401).json({ message: "Invalid token" });
   }
 };
+
+export default function authMiddleware(req, res, next) {
+  const token = req.cookies.token;
+  if (!token) return res.status(401).json({ message: "Not logged in" });
+
+  try {
+    req.user = jwt.verify(token, JWT_SECRET);
+    next();
+  } catch {
+    return res.status(401).json({ message: "Invalid Token" });
+  }
+}

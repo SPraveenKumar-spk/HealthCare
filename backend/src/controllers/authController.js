@@ -60,8 +60,22 @@ export const login = async (req, res) => {
 };
 
 export const profile = async (req, res) => {
-  return res.json({ user: req.user });
+  try {
+    const user = await prisma.user.findUnique({
+      where: { id: req.user.id },
+      include: {
+        patient: true,
+        doctor: true,
+      },
+    });
+
+    if (!user) return res.status(404).json({ message: "User not found" });
+    return res.json({ user });
+  } catch (error) {
+    return res.status(500).json({ error: error.message });
+  }
 };
+
 
 export const logout = async (req, res) => {
   res.clearCookie("token");

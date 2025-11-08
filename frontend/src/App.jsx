@@ -14,7 +14,8 @@ import Services from "./pages/Services";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import PasswordReset from "./pages/auth/PasswordReset";
 import PatientDashboard from "./pages/dashboard/patient/PatientDashboard";
-import Appointments from "./pages/dashboard/patient/Appointments";
+import DoctorDashboard from "./pages/doctor/DoctorDashboard";
+import Appointments from "./pages/dashboard/patient/MyAppointments";
 import BookAppointment from "./pages/dashboard/patient/BookAppointment";
 import Profile from "./pages/dashboard/patient/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -44,7 +45,18 @@ function App() {
           <Route path="appointments" element={<Appointments />} />
           <Route path="book" element={<BookAppointment />} />
           <Route path="profile" element={<Profile />} />
+
         </Route>
+
+        <Route
+          path="/dashboard/doctor"
+          element={
+            <ProtectedRoute allowedRoles={["doctor"]}>
+              <DoctorDashboard />
+            </ProtectedRoute>
+          }
+        />
+
           {/* <Route path="/book-appointment" element={<BookAppointment />} /> */}
           {/* <Route path="/health-checkup" element={<HealthCheckup />} />
           <Route path="/find-doctor" element={<FindDoctor />} />
