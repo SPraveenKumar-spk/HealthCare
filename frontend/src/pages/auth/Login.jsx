@@ -16,8 +16,8 @@ const handleLogin = async (e) => {
 
   try {
     const role = await login(email, password); 
-      if (role === "patient") navigate("/dashboard/patient");
-      else if (role === "doctor") navigate("/dashboard/doctor");
+      if (role === "patient") navigate("/patient");
+      else if (role === "doctor") navigate("/doctor");
       else navigate("/");
 
   } catch (err) {

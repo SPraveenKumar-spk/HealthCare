@@ -5,6 +5,8 @@ import authRoutes from "./routes/authRoutes.js";
 import doctorRoutes from "./routes/doctorRoutes.js";
 import appointmentRoute from "./routes/appointmentRoute.js";
 import patientRoute from "./routes/patientRoute.js";
+import healthCheckRoutes from "./routes/healthCheck.js";
+import onlineConsultRoute from "./routes/onlineConsult.js";
 
 
 
@@ -24,7 +26,9 @@ app.use(
 
 app.use("/api/auth", authRoutes);
 app.use("/api/doctors", doctorRoutes);
-app.use("/api/appointment", appointmentRoute);
-app.use("/patient", patientRoute);
+app.use("/api/appointments", appointmentRoute);
+app.use("/api/patient", patientRoute);
+app.use("/api/health-check", healthCheckRoutes);
+app.use("/api/online-consult", onlineConsultRoute);
 
 export default app;

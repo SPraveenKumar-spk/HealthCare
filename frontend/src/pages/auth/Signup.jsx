@@ -48,40 +48,40 @@ const handleRegister = async (e) => {
                 Your Name
               </label>
               <input
-  type="text"
-  name="fullName"
-  placeholder="Your Name"
-  value={formData.fullName}
-  onChange={handleChange}
-  required
-/>
+                type="text"
+                name="fullName"
+                placeholder="Your Name"
+                value={formData.fullName}
+                onChange={handleChange}
+                required
+              />
             </div>
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Your email
               </label>
               <input
-  type="email"
-  name="email"
-  placeholder="you@example.com"
-  value={formData.email}
-  onChange={handleChange}
-  required
-/>
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div>
               <label className="block mb-2 text-md font-medium text-gray-900">
                 Password
               </label>
-             <input
-  type="password"
-  name="password"
-  placeholder="••••••••"
-  value={formData.password}
-  onChange={handleChange}
-  required
-/>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="••••••••"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                />
             </div>
             <div>
               <label htmlFor="role" className="block mb-2">

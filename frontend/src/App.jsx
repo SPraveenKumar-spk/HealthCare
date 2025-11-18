@@ -3,22 +3,22 @@ import Home from "./Home";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/auth/Login";
 import Signup from "./pages/auth/Signup";
-// import BookAppointment from "./components/Services/BookAppointment";
-import HealthCheckup from "./components/Services/HealthCheckup";
-import FindDoctor from "./components/Services/FindDoctor";
-import FindHospital from "./components/Services/FindHospital";
-import ConsultOnline from "./components/Services/ConsultOnline";
 import ContactUs from "./pages/ContactUs";
 import AboutUs from "./pages/AboutUs";
 import Services from "./pages/Services";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import PasswordReset from "./pages/auth/PasswordReset";
-import PatientDashboard from "./pages/dashboard/patient/PatientDashboard";
-import DoctorDashboard from "./pages/doctor/DoctorDashboard";
-import Appointments from "./pages/dashboard/patient/MyAppointments";
-import BookAppointment from "./pages/dashboard/patient/BookAppointment";
-import Profile from "./pages/dashboard/patient/Profile";
 import ProtectedRoute from "./components/ProtectedRoute";
+import PatientDashboard from "./pages/patient/PatientDashboard";
+import DoctorDashboard from "./pages/doctor/DoctorDashboard";
+import Appointments from "./pages/patient/MyAppointments";
+import BookAppointment from "./pages/patient/BookAppointment";
+import PatientProfile from "./pages/patient/Profile";
+import FindHospital from "./pages/patient/FindHospital";
+import BookHealthCheck from "./pages/patient/BookHealthCheck";
+import ConsultOnline from "./pages/patient/ConsultOnline";
+import DoctorProfile from "./pages/doctor/DoctorProfile";
+
 
 function App() {
   return (
@@ -34,34 +34,32 @@ function App() {
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/about" element={<AboutUs />} />
           <Route
-          path="/dashboard/patient"
-          element={
-            <ProtectedRoute allowedRoles={["patient"]}>
-              <PatientDashboard />
-            </ProtectedRoute>
-          }
-        >
-          <Route index element={<Appointments />} />
-          <Route path="appointments" element={<Appointments />} />
-          <Route path="book" element={<BookAppointment />} />
-          <Route path="profile" element={<Profile />} />
+            path="/patient"
+            element={
+              <ProtectedRoute allowedRoles={["patient"]}>
+                <PatientDashboard />
+              </ProtectedRoute>
+            }
+          >
+            <Route path="appointments" element={<Appointments />} />
+            <Route path="book" element={<BookAppointment />} />
+            <Route path="profile" element={<PatientProfile />} />
+            <Route path="find-hospital" element={<FindHospital />} />
+            <Route path="health-checkup" element={<BookHealthCheck />} />
+            <Route path="consult-online" element={<ConsultOnline />} />
+          </Route>
 
-        </Route>
+          <Route
+            path="/doctor"
+            element={
+              <ProtectedRoute allowedRoles={["doctor"]}>
+                <DoctorDashboard />
 
-        <Route
-          path="/dashboard/doctor"
-          element={
-            <ProtectedRoute allowedRoles={["doctor"]}>
-              <DoctorDashboard />
-            </ProtectedRoute>
-          }
-        />
-
-          {/* <Route path="/book-appointment" element={<BookAppointment />} /> */}
-          {/* <Route path="/health-checkup" element={<HealthCheckup />} />
-          <Route path="/find-doctor" element={<FindDoctor />} />
-          <Route path="/find-hospital" element={<FindHospital />} />
-          <Route path="/consult-online" element={<ConsultOnline />} /> */}
+              </ProtectedRoute>
+            }
+            >
+            <Route path="profile" element={<DoctorProfile />} />
+            </Route>
           <Route path="*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
